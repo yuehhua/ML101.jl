@@ -4,7 +4,7 @@ using Test
 using DataFrames
 
 @testset "ML101.jl" begin
-
-    include("linear_regression.jl")
-
+    @testset "linear_regression.jl" begin
+        include("linear_regression.jl")
+    end
 end

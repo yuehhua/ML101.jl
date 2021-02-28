@@ -1,4 +1,4 @@
-@testset "linear_regression.jl internal function" begin
+@testset "internal function" begin
     # Ŷ = 0.1 + 0.3 x₁ + 0.6 X₂ + 0.9 x₃
     x₁ = collect(1:10)
     x₂ = collect(11:20)
@@ -12,7 +12,7 @@
     @test ML101.loss(lrm) == 0
 end
 
-@testset "linear_regression.jl multipal regression" begin
+@testset "multiple regression" begin
     # Ŷ = 0.1 + 0.3 x₁ + 0.6 X₂ + 0.9 x₃
     x₁ = rand(10)
     x₂ = rand(10)
@@ -31,7 +31,7 @@ end
     )
 end
 
-@testset "linear_regression.jl linear regression" begin
+@testset "simple linear regression" begin
     # Ŷ = 0.1 + 0.3 x₁
     x₁ = rand(10)
     ŷ = 0.1 .+ 0.3x₁
