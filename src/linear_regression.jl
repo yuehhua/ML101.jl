@@ -3,9 +3,9 @@ export
     fit!,
     predict
 
-mutable struct LinearRegressionModel
-    y::Vector
-    X::VecOrMat
+mutable struct LinearRegressionModel{T,S}
+    y::Vector{T}
+    X::AbstractArray{S}
     argv::Vector{Float64}
     N::Integer
 end
@@ -50,12 +50,12 @@ end
 
 function ∇L(model::LinearRegressionModel, i)
     X = hcat(ones(size(model.X[i,:], 1)), model.X[i,:])
-    return vec(sum(residual(model) .* X, dims=1))
+    return vec(sum(-residual(model) .* X, dims=1))
 end
 
 function ∇L(model::LinearRegressionModel)
     X = hcat(ones(size(model.X, 1)), model.X)
-    return vec(sum(residual(model) .* X, dims=1))
+    return vec(sum(-residual(model) .* X, dims=1))
 end
 
 function fit!(model::LinearRegressionModel; method=gradient_descent, η::Real=1e-4, atol::Real=1e-6, show=false)
